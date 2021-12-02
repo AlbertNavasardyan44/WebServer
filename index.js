@@ -8,7 +8,7 @@ const PORT=process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use( express.static( "views" ) );
 //const Person = require("./Models/Person")
-
+const uri = process.env.MONGODB_URI;
 mongoose
 .connect(
    ' mongodb+srv://albertdb:albertdb449@cluster0.wyknk.mongodb.net/sampletest?retryWrites=true&w=majority',
