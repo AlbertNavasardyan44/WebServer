@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 const ejs = require('ejs');
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
@@ -30,13 +30,11 @@ const UsersSchema = new mongoose.Schema({
 const Users = mongoose.model('Users', UsersSchema);
 
 app.get('/addDefaultImages', (req, res) => {
-    console.log('vvvvvv');
+   
    const arr = [{ imgname: '6.jpg' }];
 Users.insertMany(arr, function(err, users) {
-    // Users.create({
-    //     imgname:'4.jpg',
-    // })
-    console.log('vvvvvv');
+  
+  
     if (err) throw err;
             console.log("Number of documents inserted: " + res.insertedCount);
             
@@ -48,19 +46,13 @@ Users.insertMany(arr, function(err, users) {
 // const Users = mongoose.model('Users', UsersSchema);
 
 app.get('/', (req, res) => {
+    console.log('vvvvvv');
     Users.find({}, function (err, users) {
         res.render('index', {
             imageslist: users
         })
     })
 })
-
-// const { DB_CONNECTION_STRING } = process.env
-
-// mongoose.connect(DB_CONNECTION_STRING)
-// const db = mongoose.connection
-
-
 
 
 app.listen(PORT, () => {
